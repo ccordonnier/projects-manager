@@ -2,14 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @ApiResource
  */
 class User
 {
@@ -17,36 +20,43 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("User:infos")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("User:infos")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("User:infos")
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("User:infos")
      */
     private $profil;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("User:infos")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("User:infos")
      */
     private $password;
 
     /**
      * @ORM\OneToMany(targetEntity=Project::class, mappedBy="owner")
+     * @Groups("User:infos")
      */
     private $projectsCreated;
 
